@@ -1,8 +1,8 @@
 # dub.h - Routing tree CLA parser
 
-This library helps to parse Command line arguments.
+This library helps to parse and handle Command line arguments.
 
-The feature of Dub is that commands routing and commands handling are integrated. You can execute arbitrary code at any point or branch during the routing process.
+The feature of Dub is that commands routing and handling are integrated. You can execute arbitrary code at any point or branch during the routing process.
 
 The library provides two types of functions:
 - Non-moving the current argument pointer:
