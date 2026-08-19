@@ -32,6 +32,9 @@ bool dub_parse_port(Dub* dub, unsigned int* out);
 bool dub_parse_email(Dub* dub, char** out);
 bool dub_parse_string(Dub* dub, char** out);
 
+// Helps for automated --usage generation
+void dub_description(Dub* dub, char* desc, FILE* stream);
+
 #ifdef DUB_IMPLEMENTATION
 
 ///* Internal */
@@ -271,6 +274,16 @@ bool dub_parse_string(Dub* dub, char** out) {
   *out = s;
   dub->i++;
   return true;
+}
+
+void dub_description(Dub* dub, char* desc, FILE* stream) {
+  if (!stream) return:
+  FILE* out = stream;
+  int spaces = (dub->i - 1) * 2;
+  for (int i = 0; i < spaces; i++) {
+    putc(' ', out);
+  }
+  fprintf(out, "%s\n", desc);
 }
 
 #endif /* DUB_IMPLEMENTATION */
