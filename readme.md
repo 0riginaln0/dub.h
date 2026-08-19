@@ -4,20 +4,6 @@ This library helps to parse and handle Command line arguments treating them as a
 
 The feature of Dub is commands routing and handling are integrated. You can execute arbitrary code at any point or branch during the routing process.
 
-The library provides two types of functions:
-- Non-moving the current argument pointer:
-  ```
-  dub_create dub_end dub_peek
-  ```
-- Moving the current argument pointer:
-  ```
-  dub_next
-  dub_match
-  dub_parse_*
-  ```
-
-`dub_parse_*` and `dub_match` will move the argument pointer only when the parsing/matching is successfull.
-
 
 # API
 ```c
@@ -32,6 +18,8 @@ bool dub_parse_unsigned_integer(Dub* dub, unsigned int* out);
 bool dub_parse_port(Dub* dub, unsigned int* out);
 bool dub_parse_email(Dub* dub, char** out);
 bool dub_parse_string(Dub* dub, char** out);
+
+void dub_description(Dub* dub, char* desc, FILE* stream);
 ```
 
 # Usage
