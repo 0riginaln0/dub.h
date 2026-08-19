@@ -41,7 +41,7 @@ void dub_description(Dub* dub, char* desc, FILE* stream);
 ///* Internal */
 
 static int dub_internal_ascii_digit_to_int(char c) {
-  return c - 48;
+  return c - '0';
 }
 
 static bool dub_internal_is_integer(char* s, int* out) {
