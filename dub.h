@@ -86,6 +86,7 @@ static bool dub_internal_is_integer(char* s, int* out) {
   }
 
   if (error_during_parsing) return false;
+  if (!some_digit_met) return false;
   if (sign_met) x = x * sign;
   *out = x;
   return true;
@@ -119,6 +120,7 @@ static bool dub_internal_is_unsigned_integer(char* s, unsigned int* out) {
   }
 
   if (error_during_parsing) return false;
+  if (!some_digit_met) return false;
   *out = x;
   return true;
 }
