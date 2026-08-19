@@ -18,6 +18,7 @@ typedef struct {
   int argc;
   char** argv;
   int i;
+  int desc_indent;
 } Dub;
 
 Dub   dub_create(int argc, char** argv); // Create a Dub instance
@@ -34,7 +35,7 @@ bool dub_parse_email(Dub* dub, char** out);
 bool dub_parse_string(Dub* dub, char** out);
 
 // Helps for automated --usage generation
-void dub_description(Dub* dub, char* desc, FILE* stream);
+void dub_desc(Dub* dub, char* desc, FILE* stream);
 
 #ifdef DUB_IMPLEMENTATION
 
@@ -207,7 +208,8 @@ Dub dub_create(int argc, char** argv) {
   return (Dub){
     .argc = argc,
     .argv = argv,
-    .i = 1
+    .i = 1,
+    .desc_indent = 0,
   };
 }
 
@@ -285,10 +287,10 @@ bool dub_parse_string(Dub* dub, char** out) {
   return true;
 }
 
-void dub_description(Dub* dub, char* desc, FILE* stream) {
+void dub_desc(Dub* dub, char* desc, FILE* stream) {
   if (stream == NULL) return;
   FILE* out = stream;
-  int spaces = (dub->i - 1) * 2;
+  int spaces = dub->desc_indent * 2;
   for (int i = 0; i < spaces; i++) {
     putc(' ', out);
   }
