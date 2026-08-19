@@ -277,7 +277,7 @@ bool dub_parse_string(Dub* dub, char** out) {
 }
 
 void dub_description(Dub* dub, char* desc, FILE* stream) {
-  if (!stream) return:
+  if (stream == NULL) return:
   FILE* out = stream;
   int spaces = (dub->i - 1) * 2;
   for (int i = 0; i < spaces; i++) {
