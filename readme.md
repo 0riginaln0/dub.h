@@ -2,7 +2,7 @@
 
 This library helps to parse and handle Command line arguments treating them as a routing tree.
 
-The feature of Dub is that commands routing & handling are integrated. You can execute arbitrary code at any point or branch during the routing process.
+The feature of Dub is that commands routing & handling are integrated. You can execute arbitrary code at any point of the argument parsing process.
 
 
 # API
