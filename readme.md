@@ -26,7 +26,7 @@ bool dub_parse_port(Dub* dub, unsigned int* out);
 bool dub_parse_email(Dub* dub, char** out);
 bool dub_parse_string(Dub* dub, char** out);
 
-void dub_description(Dub* dub, char* desc, FILE* stream);
+void dub_desc(Dub* dub, char* desc, FILE* stream);
 ```
 
 # Usage
