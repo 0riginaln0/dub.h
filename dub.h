@@ -247,7 +247,7 @@ bool dub_parse_port(Dub* dub, unsigned int* out) {
   char* s = dub_peek(dub);
   unsigned int i;
   if (!dub_internal_is_unsigned_integer(s, &i)) return false;
-  if (i < 0 || 65353 < i) return false;
+  if (i < 0 || 65535 < i) return false;
   *out = i;
   dub->i++;
   return true;
