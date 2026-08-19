@@ -4,6 +4,13 @@ This library helps to parse and handle Command line arguments treating them as a
 
 The feature of Dub is that commands routing & handling are integrated. You can execute arbitrary code at any point of the arguments parsing process.
 
+- [API](#api)
+- [Usage](#usage)
+  - [Python http.server & calendar larping](#python-httpserver--calendar-larping)
+  - [Hello world:](#hello-world)
+  - [Parsing optional flags in any order](#parsing-optional-flags-in-any-order)
+- [Automatic `--help` generation & Scoped macros DSL](#automatic---help-generation--scoped-macros-dsl)
+- [Inspiration](#inspiration)
 
 # API
 ```c
