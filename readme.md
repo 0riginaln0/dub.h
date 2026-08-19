@@ -41,6 +41,7 @@ bool dub_parse_string(Dub* dub, char** out);
 ```sh
 python -m http.server
 python -m http.server 9292
+python -m http.server --bind 127.0.0.1
 python -m http.server 9292 --bind 127.0.0.1
 python -m calendar
 ```
