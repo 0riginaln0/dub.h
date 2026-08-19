@@ -56,7 +56,9 @@ static bool dub_internal_is_integer(char* s, int* out) {
   bool error_during_parsing = false;
   bool sign_met = false;
 
+  int pos = 0;
   while (true) {
+    pos++;
     char c = *cursor;
     if ('0' <= c && c <= '9') {
       some_digit_met = true;
@@ -68,6 +70,10 @@ static bool dub_internal_is_integer(char* s, int* out) {
     // End of string
     if (c == '\0') break;
     if (c == '-' || c == '+') {
+      if (pos != 1) {
+        error_during_parsing = true;
+        break;
+      }
       if (sign_met) {
         error_during_parsing = true;
         break;
