@@ -6,10 +6,10 @@ The feature of Dub is that commands routing & handling are integrated. You can e
 
 - [API](#api)
 - [Usage](#usage)
+  - [dub.h & nob.h](#dubh--nobh)
   - [Python http.server & calendar larping](#python-httpserver--calendar-larping)
   - [Hello world:](#hello-world)
   - [Parsing optional flags in any order](#parsing-optional-flags-in-any-order)
-  - [dub.h & nob.h](#dubh--nobh)
 - [Automatic `--help` generation & Scoped macros DSL](#automatic---help-generation--scoped-macros-dsl)
 - [Inspiration](#inspiration)
 
@@ -31,6 +31,62 @@ void dub_desc(Dub* dub, char* desc, FILE* stream);
 ```
 
 # Usage
+
+## dub.h & nob.h
+
+```c
+int main(int argc, char **argv)
+{
+  Dub dub = dub_create(argc, argv);
+
+  NOB_GO_REBUILD_URSELF(argc, argv);
+  if (!mkdir_if_not_exists(BUILD)) return 1;
+
+  Cmd cmd = {0};
+
+  if (dub_end(&dub)) {
+    // nob
+    if (!build(&cmd, DEBUG)) return 1;
+    if (!run(&cmd)) return 1;
+    clean();
+    return 0;
+  }
+
+  if (dub_match(&dub, "build")) {
+    if (dub_end(&dub) || dub_match(&dub, "debug")) {
+      // nob build
+      // nob build debug
+      if (!build(&cmd, DEBUG)) return 1;
+      return 0;
+    }
+    if (dub_match(&dub, "release")) {
+      // nob build release
+      if (!build(&cmd, RELEASE)) return 1;
+      return 0;
+    }
+  }
+
+  if (dub_match(&dub, "run")) {
+    // nob run
+    if (!run(&cmd)) return 1;
+    return 0;
+  }
+
+  if (dub_match(&dub, "clean")) {
+    // nob clean
+    clean();
+    return 0;
+  }
+
+  char* command_name;
+  if (dub_parse_string(&dub, &command_name)) {
+    nob_log(NOB_ERROR, "Unknown command %s", command_name);
+  }
+
+  return 0;
+}
+```
+
 
 ## Python http.server & calendar larping
 
@@ -157,61 +213,6 @@ int main(int argc, char** argv) {
   if (verbose) printf("\tbe verbose\n");
   if (ignore_case) printf("\tignore case\n");
   if (first_try) printf("\tsucceed in first try!\n");
-
-  return 0;
-}
-```
-
-## dub.h & nob.h
-
-```c
-int main(int argc, char **argv)
-{
-  Dub dub = dub_create(argc, argv);
-
-  NOB_GO_REBUILD_URSELF(argc, argv);
-  if (!mkdir_if_not_exists(BUILD)) return 1;
-
-  Cmd cmd = {0};
-
-  if (dub_end(&dub)) {
-    // nob
-    if (!build(&cmd, DEBUG)) return 1;
-    if (!run(&cmd)) return 1;
-    clean();
-    return 0;
-  }
-
-  if (dub_match(&dub, "build")) {
-    if (dub_end(&dub) || dub_match(&dub, "debug")) {
-      // nob build
-      // nob build debug
-      if (!build(&cmd, DEBUG)) return 1;
-      return 0;
-    }
-    if (dub_match(&dub, "release")) {
-      // nob build release
-      if (!build(&cmd, RELEASE)) return 1;
-      return 0;
-    }
-  }
-
-  if (dub_match(&dub, "run")) {
-    // nob run
-    if (!run(&cmd)) return 1;
-    return 0;
-  }
-
-  if (dub_match(&dub, "clean")) {
-    // nob clean
-    clean();
-    return 0;
-  }
-
-  char* command_name;
-  if (dub_parse_string(&dub, &command_name)) {
-    nob_log(NOB_ERROR, "Unknown command %s", command_name);
-  }
 
   return 0;
 }
