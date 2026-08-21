@@ -8,7 +8,7 @@ The feature of Dub is that commands routing & handling are integrated. You can e
 - [Usage](#usage)
   - [dub.h & nob.h](#dubh--nobh)
   - [Python http.server & calendar larping](#python-httpserver--calendar-larping)
-  - [Hello world:](#hello-world)
+  - [Hello world](#hello-world)
   - [Parsing optional flags in any order](#parsing-optional-flags-in-any-order)
 - [Automatic `--help` generation & Scoped macros DSL](#automatic---help-generation--scoped-macros-dsl)
 - [Inspiration](#inspiration)
@@ -141,7 +141,7 @@ int main(int argc, char** argv) {
 }
 ```
 
-## Hello world:
+## Hello world
 
 ```
 dub version
